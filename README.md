@@ -1,50 +1,20 @@
-# React + TypeScript + Vite
+# test-fe-azlogistik
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Test Az Logistik
 
-Currently, two official plugins are available:
+Stack yang digunakan: React.js, Typescript, tailwindcss - daisyUI, React hook form, yup validation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Cara Menjalankan project ini:
 
-## Expanding the ESLint configuration
+- Pastikan sudah menginstall Node.js versi 18
+- Basic memakai yarn
+- Jalankan perintah yarn install untuk menginstall semua dependencies yang ada
+- Jalankan perintah yarn run dev untuk menjalankan project
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Route
 
-- Configure the top-level `parserOptions` property like this:
+terdapat beberapa Route
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- "/" untuk route utama
+- "/create" untuk route create
+- "/edit" untuk route edit
