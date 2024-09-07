@@ -18,3 +18,5 @@ terdapat beberapa Route
 - "/" untuk route utama
 - "/create" untuk route create
 - "/edit" untuk route edit
+
+- "/poke" untuk table poke
