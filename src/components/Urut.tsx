@@ -16,19 +16,19 @@ export default function UrutComponent() {
 
   return (
     <div className="flex space-x-6 items-center">
-      <details className="dropdown">
+      <details className="dropdown mr-1">
         <summary className="btn m-1">Urut berdasar</summary>
         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
           <li>
-            <a onClick={() => setUrut('productPrice')}>Harga</a>
+            <a onClick={() => setUrut('harga')}>Harga</a>
           </li>
           <li>
-            <a onClick={() => setUrut('productStock')}>Stock</a>
+            <a onClick={() => setUrut('stock')}>Stock</a>
           </li>
         </ul>
       </details>
-      {urut}
-      <details className="dropdown">
+      <p>{urut}</p>
+      <details className="dropdown mr-1">
         <summary className="btn m-1">Urut berdasar</summary>
         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
           <li>
@@ -39,7 +39,7 @@ export default function UrutComponent() {
           </li>
         </ul>
       </details>
-      {detailUrut}
+      <p>{detailUrut}</p>
     </div>
   )
 }

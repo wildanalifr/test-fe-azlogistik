@@ -3,7 +3,7 @@ import ProductComponent from '../components/Product'
 import SearchComponent from '../components/Search'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Modal from '../components/Modal'
 import { tProduct } from '../types/Product'
 import { deleteProduct, getProduct } from '../redux/productSlice'
@@ -42,18 +42,39 @@ export default function ProductPage() {
     setIsDataDelete(null)
   }
 
+  const [productList, setProductList] = useState<tProduct[]>([])
+
+  useEffect(() => {
+    if (products) {
+      setProductList(products)
+    }
+  }, [products])
+
+  console.log('products', products)
+
   return (
     <>
       <div className="mx-auto p-3 relative">
-        <div className="flex justify-between">
-          <SearchComponent />
-          <UrutComponent />
-          <button className="btn" onClick={handleClickAdd}>
-            Add Item
-          </button>
+        <div className="py-4 border-b border-gray-900/10 lg:px-8  dark:border-gray-300/10">
+          <div className="flex justify-between">
+            <SearchComponent />
+            <div className="hidden lg:flex justify-between space-x-10">
+              <UrutComponent />
+              <button className="btn" onClick={handleClickAdd}>
+                Add Item
+              </button>
+            </div>
+          </div>
+          <div className="flex lg:hidden justify-between space-x-10 mt-2">
+            <UrutComponent />
+            <button className="btn" onClick={handleClickAdd}>
+              Add Item
+            </button>
+          </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {products.map((item) => (
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 mt-8">
+          {productList.map((item) => (
             <ProductComponent
               key={item.uuid}
               item={item}

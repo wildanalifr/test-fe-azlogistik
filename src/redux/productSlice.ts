@@ -35,6 +35,7 @@ export const productSlice = createSlice({
         productPrice: item?.uuid === uuid ? productPrice : item.productPrice,
         productStock: item?.uuid === uuid ? productStock : item.productStock,
       }))
+      localStorage.setItem('datas', JSON.stringify(state.products))
     },
     getProduct: (state, action) => {
       const uuid = action.payload
@@ -45,8 +46,8 @@ export const productSlice = createSlice({
     },
     deleteProduct: (state, action) => {
       const uuid = action.payload
-      console.log('uuid', uuid)
       state.products = state.products.filter((item) => item?.uuid !== uuid)
+      localStorage.setItem('datas', JSON.stringify(state.products))
     },
 
     searchProduct: (state, action) => {
@@ -64,19 +65,26 @@ export const productSlice = createSlice({
 
     sortProduct: (state, action) => {
       const { nameFilter, tipeFilter } = action.payload
-      console.log({
-        nameFilter,
-        tipeFilter,
-      })
-
-      if (tipeFilter === 'kecil') {
-        state.products = state.products.sort((a, b) =>
-          a.productPrice > b.productPrice ? 1 : -1
-        )
-      } else {
-        state.products = state.products.sort((a, b) =>
-          a.productPrice < b.productPrice ? 1 : -1
-        )
+      if (nameFilter === 'harga') {
+        if (tipeFilter === 'kecil') {
+          state.products = state.products.sort((a, b) =>
+            a.productPrice > b.productPrice ? 1 : -1
+          )
+        } else {
+          state.products = state.products.sort((a, b) =>
+            a.productPrice < b.productPrice ? 1 : -1
+          )
+        }
+      } else if (nameFilter === 'stock') {
+        if (tipeFilter === 'kecil') {
+          state.products = state.products.sort((a, b) =>
+            a.productStock > b.productStock ? 1 : -1
+          )
+        } else {
+          state.products = state.products.sort((a, b) =>
+            a.productStock < b.productStock ? 1 : -1
+          )
+        }
       }
     },
   },
