@@ -87,24 +87,25 @@ export const productSlice = createSlice({
 
     sortProduct: (state, action) => {
       const { nameFilter, tipeFilter } = action.payload
+
       if (nameFilter === 'harga') {
         if (tipeFilter === 'kecil') {
-          state.products = state.products.sort((a, b) =>
-            a.productPrice < b.productPrice ? 1 : -1
+          state.products = state.products.sort(
+            (a, b) => Number(a.productPrice) - Number(b.productPrice)
           )
         } else {
-          state.products = state.products.sort((a, b) =>
-            a.productPrice > b.productPrice ? 1 : -1
+          state.products = state.products.sort(
+            (a, b) => Number(b.productPrice) - Number(a.productPrice)
           )
         }
       } else if (nameFilter === 'stock') {
         if (tipeFilter === 'kecil') {
-          state.products = state.products.sort((a, b) =>
-            a.productStock > b.productStock ? 1 : -1
+          state.products = state.products.sort(
+            (a, b) => Number(a.productStock) - Number(b.productStock)
           )
         } else {
-          state.products = state.products.sort((a, b) =>
-            a.productStock < b.productStock ? 1 : -1
+          state.products = state.products.sort(
+            (a, b) => Number(b.productStock) - Number(a.productStock)
           )
         }
       }
