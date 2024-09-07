@@ -7,7 +7,26 @@ const initialState: {
   //   isSearch: boolean
   //   searchProducts: tProduct[]
 } = {
-  products: [],
+  products: [
+    {
+      uuid: '1',
+      productName: 'team1',
+      productPrice: '20000',
+      productStock: '20',
+    },
+    {
+      uuid: '2',
+      productName: 'team2',
+      productPrice: '100000',
+      productStock: '1000',
+    },
+    {
+      uuid: '3',
+      productName: 'team3',
+      productPrice: '90000',
+      productStock: '10',
+    },
+  ],
   product: null,
   //   isSearch,
   //   searchProducts,
@@ -53,14 +72,17 @@ export const productSlice = createSlice({
     searchProduct: (state, action) => {
       const searchInput = action.payload
 
-      const filteredProduct = state.products.filter(
+      const filteredProduct = state.products.some(
         (item) =>
-          item?.productName.toLowerCase().includes(searchInput) ||
-          item?.productPrice.includes(searchInput)
+          item?.productName
+            .toLowerCase()
+            .includes(searchInput?.toLowerCase()) ||
+          item?.productPrice.includes(searchInput?.toLowerCase())
       )
-      state.products = searchInput
-        ? filteredProduct
-        : JSON.parse(localStorage.getItem('datas')!)
+      state.products =
+        searchInput !== ''
+          ? filteredProduct
+          : JSON.parse(localStorage.getItem('datas')!)
     },
 
     sortProduct: (state, action) => {
@@ -68,11 +90,11 @@ export const productSlice = createSlice({
       if (nameFilter === 'harga') {
         if (tipeFilter === 'kecil') {
           state.products = state.products.sort((a, b) =>
-            a.productPrice > b.productPrice ? 1 : -1
+            a.productPrice < b.productPrice ? 1 : -1
           )
         } else {
           state.products = state.products.sort((a, b) =>
-            a.productPrice < b.productPrice ? 1 : -1
+            a.productPrice > b.productPrice ? 1 : -1
           )
         }
       } else if (nameFilter === 'stock') {
